@@ -14,7 +14,7 @@ $ docker-compose up
 # go to app directory
 $ composer dump-autoload   
 
-$  php -S localhost:9000    
+$  php -S localhost:9000    #in code folder
 
  
 ```
