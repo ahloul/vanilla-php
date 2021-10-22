@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+  vanilla-api:
+    container_name: vanilla-api
+    build: .
+    volumes:
+      - ./code:/var/www
+    networks:
+      - vanilla-api-service-app
+
+  vanilla-api-nginx:
+    container_name: vanilla-api-nginx
+    build: ./.docker/nginx
+    restart: always
+    ports:
+      - "9000:80"
+    volumes:
+      - ./code:/var/www
+    depends_on:
+      - vanilla
+    networks:
+      vanilla-api-service-app:
+        aliases:
+          - vanilla-nginx
+
+networks:
+  vanilla-api-service-app:
+    name: vanilla-api-service-app
+    driver: bridge
